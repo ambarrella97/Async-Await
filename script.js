@@ -1,3 +1,5 @@
+//Random number function
+
 let attempt = 1;
 let rN; 
 function getRandomNumber() {
