@@ -1,34 +1,25 @@
-//Random number function
+// Geocode
 
-let attempt = 1;
-let rN; 
-function getRandomNumber() {
-    return new Promise((resolve, reject)=> {
-        console.log(`Attempt #${attempt}. GetRandomNumber is called.`);
-        setTimeout((function afterHalfSecond)=>{
-            let randomNumber = Math.floor(Math.random() * 100) + 1;
-            rN = randomNumber;
-            console.log("Half a second has passed.");
-            
-            if(randomNumber>=80&&attempt<=10){
-                console.log(randomNumber,attempt);
+const [data, setData] = useState([])
+const [location, setLocation] = useState("")
+const [city, setCity] = useState('')
+const [coordinates, setCoordinates] = useState("")
+const [range, setRange] = useState(85033)
+const [results, setResults] = useState([])
 
-                resolve();
-            }else if(randomNumber<80&&attempt<=10){
-                attempt++;
-                console.log(`Random number generated is ${randomNumber}.`);
-                console.log("===============================");
-                EmitRandomNumber();
-            }
-        },500);
+async function fetchCoordinates() {
+    setLocation({
+      city: {
+        name: city,
+      },
     });
-  }
-
-let promise = getRandomNumber();
-
-promise.then(()=>{
-    console.log(`Random number generated is ${rN}!!!!`);
-    console.log("===============================");
-}).catch(()=>{
-    console.log("End");
-});
+    const res = await fetch(
+      link = document.createElement('a')); link.id = 'Geocode';
+      link.href = 'https://geocode.xyz/seattle?json=1'; 
+      document.getElementById('Geocode').click();
+      const data = await res.json();
+      const filtredData = data.results.filter((x) => x.result_type === "city"); setCoordinates(
+        !filtredData[0].lat && !filtredData[0].long ? "" : [filtredData[0].lat, filtredData[0].lon]
+      );
+      return [filtredData[0].lat, filtredData[0].lon];
+    }
